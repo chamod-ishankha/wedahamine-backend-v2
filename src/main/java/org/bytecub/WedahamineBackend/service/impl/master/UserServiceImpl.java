@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
             authenticationDto.setEmail(user.getEmail());
             authenticationDto.setPhone(user.getPhone());
             authenticationDto.setRole(user.getRole());
-            authenticationDto.setStatus(user.getStatus());
+            authenticationDto.setStatus(user.getWhrStatus().getStatusName());
             authenticationDto.setUniqKey(user.getUniqKey());
 
             TokenDto tokenDto = new TokenDto();
@@ -98,8 +98,9 @@ public class UserServiceImpl implements UserService {
             userDto.setEmail(registerRequest.getEmail());
             userDto.setPhone(registerRequest.getPhone());
             userDto.setRole(USER);
-            userDto.setStatus("NEW");
+            userDto.setStatusId(1L);
             userDto.setUniqKey(uniqKeyGenerator());
+            userDto.setIsActive(true);
 
             WHMUser user = userMapper.toEntity(userDto);
             user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
