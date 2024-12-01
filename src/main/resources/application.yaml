@@ -1,23 +1,30 @@
 spring:
   application:
     name: backend
-  security:
-    user:
-      name: user
-      password: password
   datasource:
-    url: jdbc:mysql://192.168.1.8:30306/wedahamine?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://192.168.1.8:30432/bytecub?currentSchema=wedahamine&useSSL=false&serverTimezone=UTC
+    username: admin
+    password: root
+    driver-class-name: org.postgresql.Driver
+  hikari:
+    poolName: Hikari
+    auto-commit: false
+    data-source-properties:
+      cachePrepStmts: true
+      prepStmtCacheSize: 250
+      prepStmtCacheSqlLimit: 2048
+      useServerPrepStmts: true
+    minimum-idle: 2
+    maximum-pool-size: 5
+    idle-timeout: 120000
+    connection-timeout: 300000
+    leak-detection-threshold: 300000
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create-drop
-    show-sql: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-        format_sql: true
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   servlet:
     multipart:
       enabled: true
@@ -42,3 +49,10 @@ server:
   port: 8080
   servlet:
     context-path: /api/wedahamine/v1
+
+app:
+  base-url: http://localhost:8080/api/wedahamine/v1
+
+logging:
+  file:
+    name: ${spring.application.name}.log

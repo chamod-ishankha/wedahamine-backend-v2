@@ -2,9 +2,7 @@ package org.bytecub.WedahamineBackend.mappers.master;
 
 import org.bytecub.WedahamineBackend.dto.master.WHMUserDto;
 import org.bytecub.WedahamineBackend.model.master.WHMUser;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -25,4 +23,7 @@ public interface WHMUserMapper {
             @Mapping(target = "statusId", source = "whrStatus.statusId"),
     })
     List<WHMUserDto> listToDto(List<WHMUser> users);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    WHMUser partialUpdate(WHMUserDto WHMUserDto, @MappingTarget WHMUser WHMUser);
 }

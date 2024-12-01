@@ -21,6 +21,7 @@ public class WHMUserDto {
     private String uniqKey;
     private LocalDate dob;
     private Boolean isActive;
+    private Boolean isVerified;
     private WHRStatusDto whrStatus;
 
     private Long statusId;

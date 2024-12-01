@@ -1,10 +1,9 @@
 package org.bytecub.WedahamineBackend.service.master;
 
-import org.bytecub.WedahamineBackend.dto.common.AuthenticationDto;
-import org.bytecub.WedahamineBackend.dto.common.LoginRequest;
-import org.bytecub.WedahamineBackend.dto.common.RegisterRequest;
-import org.bytecub.WedahamineBackend.dto.common.ResponseDto;
+import org.bytecub.WedahamineBackend.dto.common.*;
 import org.bytecub.WedahamineBackend.dto.master.WHMUserDto;
+import org.bytecub.WedahamineBackend.model.master.WHMUser;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -21,7 +20,13 @@ public interface UserService {
 
     ResponseDto deleteUser(Long userId);
 
-//    ResponseDto uploadImage(Long userId, MultipartFile file);
-//
-//    ResponseEntity<byte[]> getImage(Long userId);
+    String updateVerifyStatus(String token);
+
+    ResponseEntity<ResponseDto> forgotPassword(String email);
+
+    ResponseEntity<ResponseDto> verifyOtp(OtpVerificationDto otpVerificationDto);
+
+    ResponseEntity<ResponseDto> resetPassword(ResetPasswordDto resetPasswordDto);
+
+    ResponseEntity<ResponseDto> changePassword(PasswordChangeDto passwordChangeDto);
 }

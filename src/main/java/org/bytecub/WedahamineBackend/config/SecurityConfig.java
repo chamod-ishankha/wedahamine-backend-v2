@@ -31,7 +31,10 @@ public class SecurityConfig {
     String[] whiteListedEndpoints = new String[]{
             "/auth/login",
             "/auth/register",
+            "/auth/verify",
             "/auth/forgot-password",
+            "/auth/verify-otp",
+            "/auth/reset-password",
             // swagger
             "/v2/api-docs",
             "/v3/api-docs",

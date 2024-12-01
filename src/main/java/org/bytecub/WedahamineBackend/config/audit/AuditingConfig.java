@@ -1,4 +1,4 @@
-package org.bytecub.WedahamineBackend.config.aduit;
+package org.bytecub.WedahamineBackend.config.audit;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.bytecub.WedahamineBackend.utils.JWTUtils;
@@ -9,8 +9,6 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.util.Optional;
-
-import static org.bytecub.WedahamineBackend.constants.Common.TOKEN_TYPE;
 
 @Configuration
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
@@ -29,7 +27,7 @@ public class AuditingConfig {
             String authorizationHeader = request.getHeader("Authorization");
             String username;
 
-            if (authorizationHeader != null && authorizationHeader.startsWith(TOKEN_TYPE)) {
+            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
                 String token = authorizationHeader.substring(7); // Remove "Bearer " prefix
                 username = jwtUtil.extractUsername(token);
 

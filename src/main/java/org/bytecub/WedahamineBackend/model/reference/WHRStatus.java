@@ -1,20 +1,21 @@
 package org.bytecub.WedahamineBackend.model.reference;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.bytecub.WedahamineBackend.config.audit.AuditModel;
 
 import static org.bytecub.WedahamineBackend.constants.TableNames.STATUS_TABLE;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = STATUS_TABLE)
-public class WHRStatus {
+public class WHRStatus extends AuditModel {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @SequenceGenerator(name = STATUS_TABLE, allocationSize = 1, sequenceName = STATUS_TABLE + "_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = STATUS_TABLE)
     @Column(name = "STATUS_ID")
     private Long statusId;
     @Column(name = "STATUS_NAME")
