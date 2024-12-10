@@ -62,7 +62,7 @@ public class VerificationTokenServiceImpl implements VerificationTokenService {
         token.setUserId(userId);
         token.setOtp(otp);
         token.setExpiresAt(LocalDateTime.now().plusMinutes(10)); // OTP expires in 10 minutes
-        passwordResetTokenDao.deleteByWhmUserUserId(userId); // Remove previous OTP if exists
+        cleanUpOtp(userId);
         passwordResetTokenDao.save(passwordResetTokenMapper.toEntity(token));
     }
 

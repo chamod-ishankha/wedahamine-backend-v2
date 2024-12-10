@@ -51,7 +51,8 @@ server:
     context-path: /api/wedahamine/v1
 
 app:
-  base-url: http://localhost:8080/api/wedahamine/v1
+#  base-url: http://localhost:8080/api/wedahamine/v1
+  base-url: http://192.168.1.8:30088/api/wedahamine/v1
 
 logging:
   file:
