@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/reference")
+@RestController
+@RequestMapping("/reference")
 @Slf4j
 public class ReferenceController {
 
@@ -43,5 +44,22 @@ public class ReferenceController {
         return referenceService.getCategoryService().getPaginatedProductCategories(page, per_page, search, sort, direction);
     }
 
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<WHRProductCategoryDto> getProductCategoryById(@PathVariable Long categoryId) {
+        log.info("Inside ReferenceController: getProductCategoryById");
+        return referenceService.getCategoryService().getProductCategoryById(categoryId);
+    }
+
+    @PutMapping("/category/{categoryId}")
+    public ResponseEntity<ResponseDto> updateProductCategory(@PathVariable Long categoryId, @RequestBody WHRProductCategoryDto categoryDto) {
+        log.info("Inside ReferenceController: updateProductCategory");
+        return referenceService.getCategoryService().updateProductCategory(categoryId, categoryDto);
+    }
+
+    @DeleteMapping("/category/{categoryId}")
+    public ResponseEntity<ResponseDto> deleteProductCategory(@PathVariable Long categoryId) {
+        log.info("Inside ReferenceController: deleteProductCategory");
+        return referenceService.getCategoryService().deleteProductCategory(categoryId);
+    }
 
 }

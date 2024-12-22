@@ -12,4 +12,10 @@ public interface CategoryService {
     ResponseEntity<ResponseDto> addProductCategory(WHRProductCategoryDto categoryDto);
 
     ResponseEntity<ApiResponseDto<List<WHRProductCategoryDto>>> getPaginatedProductCategories(Integer page, Integer perPage, String search, String sort, String direction);
+
+    ResponseEntity<WHRProductCategoryDto> getProductCategoryById(Long categoryId);
+
+    ResponseEntity<ResponseDto> updateProductCategory(Long categoryId, WHRProductCategoryDto categoryDto);
+
+    ResponseEntity<ResponseDto> deleteProductCategory(Long categoryId);
 }
